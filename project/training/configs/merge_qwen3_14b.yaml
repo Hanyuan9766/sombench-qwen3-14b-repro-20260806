@@ -1,0 +1,16 @@
+base_model: /root/autodl-tmp/sombench/models/Qwen3-14B
+source_revision_manifest: /root/autodl-tmp/sombench/models/Qwen3-14B.source_revision.json
+source_verification_manifest: /root/autodl-tmp/sombench/models/Qwen3-14B.source_verification.json
+require_source_verification: true
+expected_base_repo: Qwen/Qwen3-14B
+expected_base_revision: master
+adapter_path: /root/autodl-tmp/sombench/outputs/qwen3-14b-qlora-v1/final_adapter
+output_dir: /root/autodl-tmp/sombench/merged_model
+trust_remote_code: false
+device_map: auto
+safe_merge: true
+max_shard_size: 5GB
+overwrite_output_dir: false
+expected_model_type: qwen3
+# A Qwen3-14B BF16 repo should be about 28 GB. This catches adapter-only output.
+min_weight_gb: 20.0

@@ -1,0 +1,14 @@
+numpy==1.26.4
+openai==1.77.0
+packaging==24.2
+protobuf==4.25.8
+cupy-cuda12x==13.6.0
+PyYAML==6.0.2
+ray==2.56.1
+requests==2.32.3
+safetensors==0.5.3
+sentencepiece==0.2.0
+transformers==4.51.3
+vllm==0.8.5.post1
+modelscope-hub==0.2.0
+pytest==8.3.5

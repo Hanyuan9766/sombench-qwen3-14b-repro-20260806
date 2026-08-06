@@ -1,0 +1,11 @@
+base_model: /root/autodl-tmp/sombench/models/Qwen3-14B
+adapter_path: /root/autodl-tmp/sombench/outputs/qwen3-14b-qlora-smoke/final_adapter
+output_dir: /root/autodl-tmp/sombench/merged_model_smoke
+trust_remote_code: false
+device_map: auto
+safe_merge: true
+max_shard_size: 5GB
+overwrite_output_dir: false
+expected_model_type: qwen3
+min_weight_gb: 20.0
+

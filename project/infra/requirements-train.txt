@@ -1,0 +1,17 @@
+accelerate==1.6.0
+bitsandbytes==0.45.5
+datasets==3.6.0
+numpy==1.26.4
+ninja==1.11.1.4
+packaging==24.2
+peft==0.15.2
+psutil==7.0.0
+protobuf==5.29.4
+PyYAML==6.0.2
+safetensors==0.5.3
+sentencepiece==0.2.0
+tensorboard==2.19.0
+transformers==4.51.3
+trl==0.16.1
+modelscope-hub==0.2.0
+pytest==8.3.5

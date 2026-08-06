@@ -1,0 +1,35 @@
+# Large backup/release assets
+SoMBench_repro_backup_*.tar
+SoMBench_repro_backup_*.tar.part-*
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.ckpt
+*.gguf
+
+# Local credentials and secrets
+.env
+.env.*
+*.pem
+*.key
+id_rsa
+id_ed25519
+credentials*
+secrets*
+
+# Caches and generated files
+__pycache__/
+*.py[cod]
+.cache/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.DS_Store
+._*
+*.log
+
+# Local virtual environments
+.venv/
+venv/
+env/

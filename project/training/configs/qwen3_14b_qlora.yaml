@@ -1,0 +1,59 @@
+# Resolve the base snapshot locally before training; avoid a mid-run network pull.
+model:
+  name_or_path: /root/autodl-tmp/sombench/models/Qwen3-14B
+  revision: master
+  source_revision_manifest: /root/autodl-tmp/sombench/models/Qwen3-14B.source_revision.json
+  source_verification_manifest: /root/autodl-tmp/sombench/models/Qwen3-14B.source_verification.json
+  init_adapter: /root/autodl-tmp/sombench/outputs/qwen3-14b-qlora-stage1/final_adapter
+  trust_remote_code: false
+  attn_implementation: flash_attention_2
+  gradient_checkpointing: true
+  use_reentrant: false
+  lora:
+    r: 64
+    alpha: 128
+    dropout: 0.05
+    target_modules:
+      - q_proj
+      - k_proj
+      - v_proj
+      - o_proj
+      - gate_proj
+      - up_proj
+      - down_proj
+
+data:
+  train_file: /root/autodl-tmp/sombench/datasets/processed/v1/train_balanced.jsonl
+  eval_file: /root/autodl-tmp/sombench/datasets/processed/v1/dev.jsonl
+  max_length: 4096
+  # Prepared data should already fit. Fail instead of silently deleting story or answer tokens.
+  truncation: error
+  pad_to_multiple_of: 8
+
+output_dir: /root/autodl-tmp/sombench/outputs/qwen3-14b-qlora-v1
+
+training:
+  num_train_epochs: 1.0
+  per_device_train_batch_size: 1
+  per_device_eval_batch_size: 1
+  gradient_accumulation_steps: 16
+  learning_rate: 0.00005
+  warmup_ratio: 0.03
+  lr_scheduler_type: cosine
+  weight_decay: 0.0
+  max_grad_norm: 1.0
+  logging_steps: 5
+  eval_steps: 50
+  save_steps: 50
+  save_total_limit: 3
+  load_best_model_at_end: true
+  metric_for_best_model: eval_loss_macro_dimension
+  greater_is_better: false
+  seed: 3407
+  data_seed: 3407
+  bf16: true
+  tf32: true
+  optim: paged_adamw_8bit
+  report_to:
+    - tensorboard
+  resume_from_checkpoint: auto

@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "backup_id": "sombench-qwen3-14b-stage3-v2-20260806",
+  "created_at": "2026-08-06T09:23:00+08:00",
+  "visibility": "private",
+  "payload_file_count": 403,
+  "archive": {
+    "name": "SoMBench_repro_backup_20260806.tar",
+    "size_bytes": 5007554560,
+    "sha256": "31d72d4b7464e1ab92c264c7f68ca7c1a8706417053cfa5d7913eccf4fefc514"
+  },
+  "parts": [
+    {
+      "name": "SoMBench_repro_backup_20260806.tar.part-00",
+      "size_bytes": 1887436800,
+      "sha256": "ee69f46b367e1f34639db923da468970b12e3c8fcedd5cccae3e128ed5f661d3"
+    },
+    {
+      "name": "SoMBench_repro_backup_20260806.tar.part-01",
+      "size_bytes": 1887436800,
+      "sha256": "dc1efca370e0b8022505f443334da3efc859ca07b32cf9dc835a07f2d3d43195"
+    },
+    {
+      "name": "SoMBench_repro_backup_20260806.tar.part-02",
+      "size_bytes": 1232680960,
+      "sha256": "4b942c73d9f8a895cb32e3aa1200b0d20eb6aa707afee7af0b99670c398f024d"
+    }
+  ],
+  "modelscope": {
+    "repository": "Bithyhy/sombench-qwen3-14b-a-v1",
+    "revision": "sombench-a-20260805-v2",
+    "commit": "41f6400b07a4f3003bcaf20bf0c9267f921ded88"
+  },
+  "verified_runtime": {
+    "transformers": "4.51.3",
+    "vllm": "0.8.5.post1"
+  },
+  "resumable_checkpoint": "outputs/qwen3-14b-qlora-stage3-cot600-v1/checkpoint-66"
+}

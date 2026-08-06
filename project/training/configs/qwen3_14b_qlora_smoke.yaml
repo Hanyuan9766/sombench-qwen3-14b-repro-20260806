@@ -1,0 +1,48 @@
+model:
+  name_or_path: /root/autodl-tmp/sombench/models/Qwen3-14B
+  revision: master
+  source_revision_manifest: /root/autodl-tmp/sombench/models/Qwen3-14B.source_revision.json
+  source_verification_manifest: /root/autodl-tmp/sombench/models/Qwen3-14B.source_verification.json
+  trust_remote_code: false
+  attn_implementation: flash_attention_2
+  gradient_checkpointing: true
+  use_reentrant: false
+  lora:
+    r: 64
+    alpha: 128
+    dropout: 0.05
+    target_modules:
+      - q_proj
+      - k_proj
+      - v_proj
+      - o_proj
+      - gate_proj
+      - up_proj
+      - down_proj
+
+data:
+  train_file: /root/autodl-tmp/sombench/datasets/processed/v1/train_balanced.jsonl
+  eval_file: null
+  max_length: 4096
+  truncation: error
+  pad_to_multiple_of: 8
+
+output_dir: /root/autodl-tmp/sombench/outputs/qwen3-14b-qlora-smoke
+
+training:
+  max_steps: 2
+  per_device_train_batch_size: 1
+  gradient_accumulation_steps: 1
+  learning_rate: 0.0001
+  warmup_ratio: 0.0
+  lr_scheduler_type: constant
+  logging_steps: 1
+  save_steps: 2
+  save_total_limit: 1
+  seed: 3407
+  data_seed: 3407
+  bf16: true
+  tf32: true
+  optim: paged_adamw_8bit
+  report_to: []
+  resume_from_checkpoint: auto

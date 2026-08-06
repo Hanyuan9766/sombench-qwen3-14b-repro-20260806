@@ -1,0 +1,51 @@
+model: sombench-qwen3-14b
+dataset: /root/autodl-tmp/sombench/datasets/raw/sombench-public-test-v1.jsonl
+output_dir: /root/autodl-tmp/sombench/outputs/eval-qwen3-14b-socialmind-v1
+
+api:
+  base_url: http://127.0.0.1:8000/v1
+  api_key_env: OPENAI_API_KEY
+  api_key_fallback: EMPTY
+  timeout_seconds: 900
+  workers: 4
+  max_retries: 3
+  retry_backoff_seconds: 2.0
+
+generation:
+  protocol: cot
+  temperature: 0.6
+  top_p: 0.95
+  max_tokens: 8192
+  n: 1
+  seeds: [17, 29, 43]
+  extra_body:
+    chat_template_kwargs:
+      enable_thinking: true
+
+prompt:
+  single: '你是一个认真阅读的人,正在回答一道关于心理状态(theory-of-mind)的单选题。请一步步推理角色的心理状态,然后输出最终答案,格式为 \boxed{X},其中 X 是唯一最合适选项的字母。把最终的 \boxed{X} 放在最后一行。'
+  multi: '你是一个认真阅读的人,正在回答一道关于心理状态(theory-of-mind)的多选题。请一步步推理角色的心理状态,然后输出最终答案:把所有正确选项的字母放进同一个 \boxed{} 中,用英文逗号分隔,例如 \boxed{A,C}。把最终的 \boxed{} 放在最后一行。'
+
+# These invariants ensure the broken-label audit is diagnostic only: evaluation
+# still generates all 213 rows, while exactly 136 agreement-safe rows are scored
+# in the recommended safe subset. Raw public rows have no dimension metadata.
+validation:
+  expected_records: 213
+  expected_safe_records: 136
+  expected_qtype_counts:
+    Q1: 71
+    Q2: 71
+    Q3: 71
+  expected_task_format_counts:
+    mcq_single: 162
+    mcq_multi: 51
+  expected_label_audit:
+    answer_text_unmapped: 16
+    letter_text_agree: 136
+    letter_text_conflict: 60
+    single_format_with_multiple_answers: 1
+  expected_dimension_coverage: 0.0
+  expected_fine_dimensions: 0
+
+resume: true
+fail_fast: false

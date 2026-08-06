@@ -1,0 +1,11 @@
+# Training environment. Install torch for the host CUDA runtime first.
+transformers==4.51.3
+peft==0.15.2
+accelerate==1.6.0
+bitsandbytes==0.45.5
+safetensors==0.5.3
+PyYAML==6.0.2
+tensorboard==2.19.0
+openai==1.77.0
+pytest==8.3.5
+
